@@ -1,6 +1,8 @@
 package ba.unsa.rpr.tutorijal7;
 
-public class Grad {
+import java.io.Serializable;
+
+public class Grad implements Serializable {
     String naziv;
     int broj_stanovnika;
     double[] temperature = new double[1000];

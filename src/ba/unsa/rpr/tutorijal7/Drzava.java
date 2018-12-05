@@ -1,13 +1,17 @@
 package ba.unsa.rpr.tutorijal7;
 
-public class Drzava {
+import java.io.Serializable;
+
+public class Drzava implements Serializable {
     String naziv;
     int broj_stanovnika;
     double povrsina;
     String jedinica_za_povrsinu;
     Grad glavni_grad;
 
-    public Drzava(){}
+    public Drzava(){
+        glavni_grad = new Grad();
+    }
 
     public String getNaziv(){
         return naziv;
