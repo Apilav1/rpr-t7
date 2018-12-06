@@ -51,8 +51,8 @@ public class Tutorijal {
         }
         for(Drzava d: f.getDrzave()){
             for(int i=0; i<gradovi.size(); i++){
-                if(gradovi.get(i).getNaziv().equals(d.getGlavni_grad())){
-                    d.glavni_grad.setTemperature(gradovi.get(i).temperature);
+                if(gradovi.get(i).getNaziv().equals(d.getGlavniGrad())){
+                    d.glavniGrad.setTemperature(gradovi.get(i).temperature);
                 }
             }
         }

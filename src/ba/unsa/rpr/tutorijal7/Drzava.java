@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public class Drzava implements Serializable {
     String naziv;
-    int broj_stanovnika;
+    int brojStanovnika;
     double povrsina;
-    String jedinica_za_povrsinu;
-    Grad glavni_grad;
+    String jedinicaZaPovrsinu;
+    Grad glavniGrad;
 
     public Drzava(){
-        glavni_grad = new Grad();
+        glavniGrad = new Grad();
     }
 
     public String getNaziv(){
@@ -19,11 +19,11 @@ public class Drzava implements Serializable {
     public void setNaziv(String naziv){
         this.naziv = naziv;
     }
-    public int getBroj_stanovnika(){
-        return broj_stanovnika;
+    public int getBrojStanovnika(){
+        return brojStanovnika;
     }
-    public void setBroj_stanovnika(int br){
-        broj_stanovnika = br;
+    public void setBrojStanovnika(int br){
+        brojStanovnika = br;
     }
     public double getPovrsina(){
         return povrsina;
@@ -31,16 +31,16 @@ public class Drzava implements Serializable {
     public void setPovrsina(double povrsina){
         this.povrsina = povrsina;
     }
-    public String getJedinica_za_povrsinu(){
-        return jedinica_za_povrsinu;
+    public String getJedinicaZaPovrsinu(){
+        return jedinicaZaPovrsinu;
     }
-    public void setJedinica_za_povrsinu(String jedinica){
-        jedinica_za_povrsinu = jedinica;
+    public void setJedinicaZaPovrsinu(String jedinica){
+        jedinicaZaPovrsinu = jedinica;
     }
-    public Grad getGlavni_grad(){
-        return glavni_grad;
+    public Grad getGlavniGrad(){
+        return glavniGrad;
     }
-    public void setGlavni_grad(Grad g){
-        glavni_grad = g;
+    public void setGlavniGrad(Grad g){
+        glavniGrad = g;
     }
 }
