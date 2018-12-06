@@ -1,9 +1,14 @@
 package ba.unsa.rpr.tutorijal7;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.beans.XMLDecoder;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -41,25 +46,66 @@ public class Tutorijal {
         return null;
     }
     public static UN ucitajXML(ArrayList<Grad> gradovi){
-        UN f = null;
+        UN un = new UN();
+        Document xmldoc = null;
         try {
-            XMLDecoder ulaz = new XMLDecoder(new FileInputStream("drzave.xml"));
-            f = (UN) ulaz.readObject();
-            ulaz.close();
-        } catch(Exception e) {
-            System.out.println("Greška: "+e);
-        }
-        for(Drzava d: f.getDrzave()){
-            for(int i=0; i<gradovi.size(); i++){
-                if(gradovi.get(i).getNaziv().equals(d.getGlavniGrad())){
-                    d.glavniGrad.setTemperature(gradovi.get(i).temperature);
+            /*DocumentBuilder docReader = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            xmldoc = docReader.parse(new File("drzave.xml"));
+            Element element = xmldoc.getDocumentElement();
+            int brAtributa = element.getAttributes().getLength();
+            NodeList djeca = element.getChildNodes();
+            System.out.print(djeca.getLength());*/
+            File fXmlFile = new File("drzave.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+
+            //optional, but recommended
+            //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+            doc.getDocumentElement().normalize();
+
+            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+            ArrayList<Drzava> drzave2 = new ArrayList<>();
+            NodeList nList = doc.getElementsByTagName("drzava");
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+
+                Node nNode = nList.item(temp);
+
+                System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Drzava d2 = new Drzava();
+                        Element eElement = (Element) nNode;
+                        System.out.println(eElement.getAttribute("brojStanovnika"));
+                        d2.setBrojStanovnika(Integer.parseInt(eElement.getAttribute("brojStanovnika")));
+                        System.out.println(eElement.getElementsByTagName("naziv").item(0).getTextContent());
+                        d2.setNaziv(eElement.getElementsByTagName("naziv").item(0).getTextContent());
+                        Grad gg = new Grad();
+                        NodeList nlist2 = doc.getElementsByTagName("glavnigrad");
+                        Node nNode2 = nlist2.item(temp);
+                        Element e2 = (Element) nNode2;
+                         System.out.println(e2.getAttribute("stanovnika"));
+                         gg.setBrojStanovnika(Integer.parseInt(e2.getAttribute("stanovnika")));
+                         System.out.println(e2.getElementsByTagName("nazivGlavnogGrada").item(0).getTextContent());
+                         gg.setNaziv(e2.getElementsByTagName("nazivGlavnogGrada").item(0).getTextContent());
+                        d2.setGlavniGrad(gg);
+
+                       System.out.println(eElement.getElementsByTagName("povrsina").item(0).getTextContent());
+                       d2.setPovrsina(Integer.parseInt(eElement.getElementsByTagName("povrsina").item(0).getTextContent()));
+                       drzave2.add(d2);
                 }
             }
+            un.setDrzave(drzave2);
         }
-        return f;
+        catch(Exception e) {
+            System.out.println("Greška: "+e);
+        }
+        return un;
     }
     public static void main(String[] args) {
 
-        ucitajGradove();
+
+        //ucitajXML(ucitajGradove());
+        ucitajXML(new ArrayList<Grad>());
     }
 }

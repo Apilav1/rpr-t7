@@ -1,17 +1,18 @@
+<?xml version="1.0"?>
 <drzave>
-    <drzava broj_stanovnika = "1000">
-        <naziv>BiH</naziv>
-        <glavni_grad brojStanovnika = "10000">
-            <naziv_grada>Sarajevo</naziv_grada>
-        </glavni_grad>
-        <povrsina>10000</povrsina>
+    <drzava brojStanovnika="3500000">
+        <naziv>Bosna i Hercegovina</naziv>
+        <glavnigrad stanovnika="400000">
+            <nazivGlavnogGrada>Sarajevo</nazivGlavnogGrada>
+        </glavnigrad>
+        <povrsina>51129</povrsina>
     </drzava>
 
-    <drzava broj_stanovnika = "2000">
+    <drzava brojStanovnika = "2000">
         <naziv>Turska</naziv>
-        <glavni_grad brojStanovnika = "20000">
-            <naziv_grada>Ankara</naziv_grada>
-        </glavni_grad>
-        <povrsina>20000</povrsina>
+        <glavnigrad stanovnika="321938218">
+            <nazivGlavnogGrada>Ankara</nazivGlavnogGrada>
+        </glavnigrad>
+        <povrsina>51129</povrsina>
     </drzava>
 </drzave>
